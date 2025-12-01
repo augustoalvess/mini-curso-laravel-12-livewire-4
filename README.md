@@ -17,3 +17,10 @@ docker exec -it laravel-node bash
 npm i && npm run dev
 npm run build
 ```
+
+## 4. Acessando o container MySQL e conectando no banco de dados
+``` bash
+docker exec -it laravel-mysql bash
+mysql -u laravel -plaravel phpconf
+show tables from phpconf
+```
