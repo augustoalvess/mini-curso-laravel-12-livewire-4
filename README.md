@@ -1,0 +1,19 @@
+# Ambiente Laravel 12 + Livewire 4 com Docker para o Mini Curso PHP Conference BR
+
+## 1. Na raiz do projeto, executar a build dos containers
+``` bash
+docker-compose up -d
+```
+
+## 2. Acessando o container do Apache (PHP) e rodando as migrations
+``` bash
+docker exec -it laravel-apache bash
+php artisan migrate --seed
+```
+
+## 3. Acessando o container Node (Vite + NPM) e rodando a build
+``` bash
+docker exec -it laravel-node bash
+npm i && npm run dev
+npm run build
+```

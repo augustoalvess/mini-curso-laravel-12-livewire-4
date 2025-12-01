@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  apache:
+    build:
+      context: ./docker/apache
+      dockerfile: Dockerfile
+    container_name: laravel-apache
+    ports:
+      - "88:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - mysql
+
+  composer:
+    image: composer:2.8.3
+    container_name: laravel-composer
+    working_dir: /var/www/html
+    volumes:
+      - ./src:/var/www/html
+    entrypoint: ["tail", "-f", "/dev/null"]
+
+  node:
+    image: node:22.12.0
+    container_name: laravel-node
+    working_dir: /var/www/html
+    volumes:
+      - ./src:/var/www/html
+    command: "tail -f /dev/null"
+
+  mysql:
+    image: mysql:8.0.32
+    container_name: laravel-mysql
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: laravel
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
