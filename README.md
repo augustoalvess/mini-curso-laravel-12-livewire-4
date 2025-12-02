@@ -24,3 +24,14 @@ docker exec -it laravel-mysql bash
 mysql -u laravel -plaravel phpconf
 show tables from phpconf
 ```
+
+SINGLE PAGE APPLICATION
+
+php artisan tinker
+
+User::factory(100)->create();
+User::get();
+
+
+php artisan livewire:layout
+php artisan make:livewire users
